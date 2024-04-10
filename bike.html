@@ -1,0 +1,87 @@
+<html>
+
+    <head>
+	    <title>Motorcycle</title>
+		
+	     <body>
+		
+		    <h1 align="center">Motorcycle Detail</h1>
+			
+	        <table border="1" align="center">
+		   
+		    <form>
+			  
+			     <tr>
+				    <th>Make :</th>
+					<td><input type="text" id="make"></td>
+				    
+				 </tr>
+				 
+				 <tr>
+				    <th>Model</th>
+					    <td><input type="text" id="model"><td>
+				
+				 </tr>
+				 
+				 <tr>
+				    <td colspan="2" align="center"><input type="submit" value="submit" id="submit"></td>
+ 
+				 
+				 </tr>
+			
+			</form>
+			  
+			  
+		   </table>
+		   
+		    Engine:  <span id="engine"></span><br>
+		    Power: <span id="power"></span><br>
+		    Torque:  <span id="torque"></span><br>
+		    Makename: <span id="makename"></span><br>
+			Modelname:  <span id="modelname"></span><br>
+		   
+		    <script>
+		   
+                 	 
+                        const options = {
+	                         method: 'GET',
+                             	headers: {
+		                'X-RapidAPI-Key': '076877518amshe831aa9eeae9c1ep1ac673jsn722f36250f71',
+	                	'X-RapidAPI-Host': 'motorcycles-by-api-ninjas.p.rapidapi.com'
+	                }
+	                };
+                
+
+		    const moto= (make, model) =>  {
+			
+			    makename.innerHTML = make
+				modelname.innerHTML = model
+		
+			fetch('https://motorcycles-by-api-ninjas.p.rapidapi.com/v1/motorcycles?make=' + make + '&model='+ model, options)
+			
+			.then(  (response) => { return response.json() })	
+			.then(  (data) => { console.log(data)  
+			
+			    engine.innerHTML = data[0].engine
+				power.innerHTML = data[0].power
+			    torque.innerHTML = data[0].torque
+				})
+			}
+			
+			 submit.addEventListener("click", (event) => {
+		       event.preventDefault()
+			   moto(make.value, model.value)
+		  
+		} )
+
+       moto("Kawasaki", "Ninja")
+	
+	   
+		   </script>
+		
+		</body>
+		</body>
+   
+    </head>
+</html>	
+ 
